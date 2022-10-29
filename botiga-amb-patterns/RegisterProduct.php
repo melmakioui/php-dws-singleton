@@ -16,10 +16,7 @@ class RegisterProduct {
 
     public function insertProduct($inputs){
 
-        if(!$this->validation->isValidInput($inputs))
-            header("Location: ./views/form-alta-producte.php?err=true");
-
-        $parsedInputs = $this->validation->parseUserInputs($inputs);
+        $parsedInputs = $this->validateInputs($inputs);
 
         $name = $parsedInputs["name"];
         $description = $parsedInputs["description"];
@@ -32,9 +29,25 @@ class RegisterProduct {
 
         $result = $statement->execute();
 
-        if($result)
-            echo "Succes";
+        if(!$result) header("Location: ./views/form-alta-producte.php?dberr");
+        else header("Location: index.php"); 
+            
     }
+
+    
+    private function validateInputs($inputs){
+        if(!$this->validation->isValidInput($inputs))
+            header("Location: ./views/form-alta-producte.php?err=true");
+
+        $parsedInputs = $this->validation->parseUserInputs($inputs);
+
+        if(!$this->validation->isNumber($parsedInputs["price"]))
+            header("Location: ./views/form-alta-producte.php?err=true");
+          
+        return $parsedInputs;    
+    }
+
+
 }
 
 
