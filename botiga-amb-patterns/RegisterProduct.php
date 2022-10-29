@@ -5,6 +5,7 @@ class RegisterProduct {
     private $validation;
     private $conn;
     private const INSERT = "INSERT INTO tshirts (name,description,price) VALUES (:name,:description,:price)";
+    private const SELECT = "SELECT * FROM :tshirts";
 
     public function __construct()
     {
@@ -34,6 +35,17 @@ class RegisterProduct {
             
     }
 
+    public function getList(){
+
+        $tshirts = "tshirts";
+
+        $statement = $this->conn->prepare(self::SELECT);
+        $statement->bindParam('tshirts',$tshirts);
+        $result = $statement->execute();
+
+        if($result)
+            $_POST['tshirt-list'] = $result;
+    }
     
     private function validateInputs($inputs){
         if(!$this->validation->isValidInput($inputs))
