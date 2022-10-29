@@ -12,8 +12,8 @@ $data = $variable->getList();
         <img class="card-img-top " src="./images/<?=$product["id"]?>.jpg" alt="Card image cap">
         <div class="card-body text-center d-flex flex-column justify-content-center">
             <h5 class="card-title"><?=$product["name"] ?></h5>
-            <h5 class="card-title"><?=$product["price"] ?></h5>
-            <a href="./fitxa.php?id=<?=$product["id"] ?>" class="btn btn-dark">DETALLS</a>
+            <h5 class="card-title"><?=$product["price"] ?>€</h5>
+            <a href="./Product.php?id=<?=$product["id"] ?>" class="btn btn-dark">DETALLS</a>
         </div>
     </div>
 <? endforeach?>

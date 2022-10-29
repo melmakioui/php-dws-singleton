@@ -1,17 +1,15 @@
 <?php
 require_once './validation/RegisterProduct.php';
 
-
 function isValidInput(){
-return
-    isset($_POST["name"]) &&
-    isset($_POST["description"]) &&
-    isset($_POST["price"]) &&
-    isset($_FILES["file"]);
+    foreach($_POST as $data)
+        if(!isset($data) || empty($data))
+            return false;
+    return true;
 }
 
 if(!isValidInput())
-    header("Location: /views/List.php");
+    header("Location: /views/FormRegisterProduct.php?inerr=true");
 else {
     $register = new RegisterProduct();
 
@@ -24,8 +22,7 @@ else {
     unset($_POST);
     unset($_FILES);
         
-    header("Location: /views/List.php");
-   
+    header("Location: /views/List.php");   
 }           
   
 
