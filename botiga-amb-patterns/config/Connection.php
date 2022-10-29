@@ -1,6 +1,5 @@
 <?php
-require_once "config.php";
-var_dump($db);
+require_once "Config.php";
 
 class Connection {
 
@@ -9,8 +8,7 @@ class Connection {
     private $host = $db["host"];
     private $username = $db["user"];
     private $password = $db["password"];
-
-
+ 
     private function __construct()
     {
         $this->conn = new PDO($this->host,$this->username,$this->password);
@@ -20,5 +18,9 @@ class Connection {
         return self::$connection === null ?
         self::$connection = new Connection() :
         self::$connection;
+    }
+
+    public function getConnection(){
+        return $this->conn;
     }
 }

@@ -2,7 +2,7 @@
 <?include './capsalera.php'?>
 
     <?php
-    $conn = Connexio::connect();
+    // $conn = Connexio::connect();
     $sql = "SELECT * FROM camisetes";
     $result = $conn->query($sql);
     ?>
