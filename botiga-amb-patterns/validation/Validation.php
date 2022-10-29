@@ -14,8 +14,8 @@ class Validation
     {
         foreach ($inputs as $value)
             if (!isset($value) || empty($value))
-                return true;
-        return false;
+                return false;
+        return true;
     }
 
     public function isValidFile($file) :bool

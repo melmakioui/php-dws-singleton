@@ -14,7 +14,11 @@ class Connection {
         $this->host = $db["host"];
         $this->username = $db["user"];
         $this->password = $db["password"];
-        $this->conn = new PDO($this->host,$this->username,$this->password);
+        try{
+            $this->conn = new PDO($this->host,$this->username,$this->password);
+        }catch(PDOException $error){
+            print "Error " . $error;
+        }
     }
 
     public static function getInstance () {
