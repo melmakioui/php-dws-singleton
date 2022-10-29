@@ -45,6 +45,19 @@ class RegisterProduct {
            
         return $data;
     }
+
+    public function uploadFile($file){
+        
+        if(!$this->validation->isValidFile($file))
+            header("Location: /views/form-alta-producte.php?errfile=true");
+         
+            $lastId = $this->conn->lastInsertId();
+            $tempDir = $_FILES['file']['tmp_name'];
+            $upload = "./views/images";
+            $newName = $lastId . ".jpg";  
+
+            return rename($tempDir,$upload . $newName);    
+    }
     
     private function validateInputs($inputs){
         if(!$this->validation->isValidInput($inputs))
