@@ -8,14 +8,14 @@
 <header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="./llista.php">TENDA-CAMISETES</a>
+    <a class="navbar-brand" href="/views/List.php">TENDA-CAMISETES</a>
     <div class="justify-content-end" id="navbarNav">
       <ul class="navbar-nav d-flex align-items-center flex-end">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./form-alta-producte.php">AFEGIR PRODUCTE</a>
+          <a class="nav-link active" aria-current="page" href="/views/FormRegisterProduct.php">AFEGIR PRODUCTE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./carreto.php"><span class="material-symbols-outlined">shopping_cart</span></a>
+          <a class="nav-link active" aria-current="page" href="/views/ShoppingCart.php"><span class="material-symbols-outlined">shopping_cart</span></a>
         </li>
       </ul>
     </div>

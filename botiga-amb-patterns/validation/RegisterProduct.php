@@ -28,8 +28,8 @@ class RegisterProduct {
         $statement = $this->conn->prepare(self::INSERT);
         $result = $statement->execute($values);
 
-        if(!$result) header("Location: ./views/form-alta-producte.php?dberr");
-        else header("Location: index.php"); 
+        if(!$result) header("Location: /views/FormRegisterProduct.php?err=true");
+        else header("Location: /views/List.php"); 
             
     }
 
@@ -49,11 +49,11 @@ class RegisterProduct {
     public function uploadFile($file){
         
         if(!$this->validation->isValidFile($file))
-            header("Location: /views/form-alta-producte.php?errfile=true");
+            header("Location: /views/FormRegisterProduct.php?errfile=true");
          
             $lastId = $this->conn->lastInsertId();
             $tempDir = $_FILES['file']['tmp_name'];
-            $upload = "./views/images";
+            $upload = "./views/images/";
             $newName = $lastId . ".jpg";  
 
             return rename($tempDir,$upload . $newName);    
@@ -61,12 +61,12 @@ class RegisterProduct {
     
     private function validateInputs($inputs){
         if(!$this->validation->isValidInput($inputs))
-            header("Location: ./views/form-alta-producte.php?err=true");
+            header("Location: ./views/FormRegisterProduct.php?err=true");
 
         $parsedInputs = $this->validation->parseUserInputs($inputs);
 
         if(!$this->validation->isNumber($parsedInputs["price"]))
-            header("Location: ./views/form-alta-producte.php?err=true");
+            header("Location: ./views/FormRegisterProduct.php?err=true");
           
         return $parsedInputs;    
     }

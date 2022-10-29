@@ -1,5 +1,6 @@
 <?php
-include './capsalera.php';
+require_once './layouts/Header.php';
+
 
 $carreto = array(
         array("id"=>"1", "Producte"=>"Nike", "Quantitat"=>"2","Total"=>40),

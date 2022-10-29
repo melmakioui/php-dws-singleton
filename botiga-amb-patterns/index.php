@@ -6,7 +6,10 @@ require_once './validation/RegisterProduct.php';
         !isset($_POST['description']) && 
         !isset($_POST['price']) &&
         !isset($_FILES['file']))
-           header("Location: ./views/List.php");
+           header("Location: ./views/List.php?err=true");
+
+
+
   
 $register = new RegisterProduct();
 
