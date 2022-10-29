@@ -10,15 +10,15 @@ class Validation
     {
     }
 
-    public function isValidInput(...$input)
+    public function isValidInput($inputs)
     {
-        foreach ($input as $value)
+        foreach ($inputs as $value)
             if (!isset($value) || empty($value))
                 return true;
         return false;
     }
 
-    public function isValidFile(...$file) :bool
+    public function isValidFile($file) :bool
     {    
         $fileName = $file['file']['name'];
         $fileSize = $file['file']['size'];
@@ -34,13 +34,12 @@ class Validation
        return true;     
     }
 
-    public function parseUserInputs(...$input) :void
+    public function parseUserInputs($inputs)
     {
+        foreach($inputs as $key => $value)
+            $inputs[$key] = htmlspecialchars(stripslashes($value));
         
-        foreach($input as $value)
-            $value = htmlspecialchars(
-                     stripslashes($value)
-            );
+       return $inputs;     
     }
 
     public function isNumber($num){
