@@ -6,6 +6,8 @@ class RegisterProduct {
     private $conn;
     private const INSERT = "INSERT INTO tshirts (name,description,price) VALUES (:name,:description,:price)";
     private const SELECT = "SELECT * FROM tshirts";
+    private const SELECT_PRODUCT = "SELECT * FROM tshirts WHERE id = :id";
+
 
     public function __construct()
     {
@@ -46,6 +48,21 @@ class RegisterProduct {
         return $data;
     }
 
+    public function getProduct($id){
+        
+        $statement = $this->conn->prepare(self::SELECT_PRODUCT);
+        $statement->bindParam('id',$id);
+        $result = $statement->execute();
+        $product = [];
+
+        if($result) 
+           while($row = $statement->fetch(PDO::FETCH_ASSOC))
+                array_push($product,$row);
+
+        return $product;        
+    }
+
+
     public function uploadFile($file){
         
         if(!$this->validation->isValidFile($file))
@@ -71,6 +88,10 @@ class RegisterProduct {
         return $parsedInputs;    
     }
 
-
+    public function FunctionName()
+    {
+        echo "test";
+    }
 }
+
 ?>
