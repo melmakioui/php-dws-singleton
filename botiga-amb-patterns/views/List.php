@@ -2,12 +2,12 @@
 require_once './layouts/Header.php'; 
 require_once '../validation/RegisterProduct.php';
 $variable = new RegisterProduct();
-$data = $variable->getList();
+$products = $variable->getList();
 
 
 ?>
 <div class="d-flex flex-wrap justify-content-evenly w-75 m-auto mt-5">
-    <?foreach ($data as $product):?>
+    <?foreach ($products as $product):?>
     <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 16rem; border-style:none ">
         <img class="card-img-top " src="./images/<?=$product["id"]?>.jpg" alt="Card image cap">
         <div class="card-body text-center d-flex flex-column justify-content-center">

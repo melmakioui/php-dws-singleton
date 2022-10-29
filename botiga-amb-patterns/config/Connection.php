@@ -21,13 +21,13 @@ class Connection {
         }
     }
 
-    public static function getInstance () {
+    public static function getInstance () :object {
         return self::$connection === null ?
         self::$connection = new Connection() :
         self::$connection;
     }
 
-    public function getConnection(){
+    public function getConnection() :object{
         return $this->conn;
     }
 }

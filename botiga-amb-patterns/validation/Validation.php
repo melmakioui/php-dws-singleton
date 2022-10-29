@@ -10,7 +10,7 @@ class Validation
     {
     }
 
-    public function isValidInput($inputs)
+    public function isValidInput($inputs) :bool
     {
         foreach ($inputs as $value)
             if (!isset($value) || empty($value))
@@ -34,7 +34,7 @@ class Validation
        return true;     
     }
 
-    public function parseUserInputs($inputs)
+    public function parseUserInputs($inputs) :array
     {
         foreach($inputs as $key => $value)
             $inputs[$key] = htmlspecialchars(stripslashes($value));

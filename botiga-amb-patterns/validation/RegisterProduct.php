@@ -17,7 +17,7 @@ class RegisterProduct {
         $this->conn = Connection::getInstance()->getConnection();
     }
 
-    public function insertProduct($inputs){
+    public function insertProduct($inputs) :void {
 
         $parsedInputs = $this->validateInputs($inputs);
 
@@ -35,20 +35,20 @@ class RegisterProduct {
             
     }
 
-    public function getList(){
+    public function getList() :array {
 
         $statement = $this->conn->prepare(self::SELECT);
         $result = $statement->execute();
-        $data = [];
+        $products = [];
 
         if($result) 
            while($row = $statement->fetch(PDO::FETCH_ASSOC))
-                array_push($data,$row);
+                array_push($products,$row);
            
-        return $data;
+        return $products;
     }
 
-    public function getProduct($id){
+    public function getProduct($id) :array{
         
         $statement = $this->conn->prepare(self::SELECT_PRODUCT);
         $statement->bindParam('id',$id);
@@ -63,7 +63,7 @@ class RegisterProduct {
     }
 
 
-    public function uploadFile($file){
+    public function uploadFile($file) :void{
         
         if(!$this->validation->isValidFile($file))
             header("Location: /views/FormRegisterProduct.php?errfile=true");
@@ -73,10 +73,10 @@ class RegisterProduct {
             $upload = "./views/images/";
             $newName = $lastId . ".jpg";  
 
-            return rename($tempDir,$upload . $newName);    
+            rename($tempDir,$upload . $newName);    
     }
     
-    private function validateInputs($inputs){
+    private function validateInputs($inputs) :array{
         if(!$this->validation->isValidInput($inputs))
             header("Location: ./views/FormRegisterProduct.php?err=true");
 
@@ -86,11 +86,6 @@ class RegisterProduct {
             header("Location: ./views/FormRegisterProduct.php?err=true");
           
         return $parsedInputs;    
-    }
-
-    public function FunctionName()
-    {
-        echo "test";
     }
 }
 
