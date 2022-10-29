@@ -9,8 +9,8 @@ class RegisterProduct {
 
     public function __construct()
     {
-        require_once './validation/Validation.php';
-        require_once './config/Connection.php';
+        require_once 'Validation.php';
+        require_once $_SERVER["DOCUMENT_ROOT"] . '/config/Connection.php';
         $this->validation = new Validation();
         $this->conn = Connection::getInstance()->getConnection();
     }

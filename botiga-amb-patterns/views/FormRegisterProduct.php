@@ -4,7 +4,7 @@
 
   <div id="hidden" class="mb-5"></div>
 
-  <form class="w-25 m-auto d-flex flex-column justify-content-center align-items-center" action="alta-producte.php" method="POST" enctype="multipart/form-data">
+  <form class="w-25 m-auto d-flex flex-column justify-content-center align-items-center" action="../index.php" method="POST" enctype="multipart/form-data">
 
     <h3>AFEGIR PRODUCTE</h3>
 
