@@ -1,11 +1,16 @@
-<? require_once './connexio.php'?>
-<?include './capsalera.php'?>
+<?php 
+require_once './RegisterProduct.php';
 
-    <?php
-    // $conn = Connexio::connect();
-    $sql = "SELECT * FROM camisetes";
-    $result = $conn->query($sql);
-    ?>
+$var = new RegisterProduct();
+
+// $var->insertProduct(array("name"=>"aaaa","description"=>"testetststs","price"=>"323.3"));
+$data = $var->getList();
+
+var_dump($data);
+foreach($data as $da)
+        var_dump($da);
+// var_dump($var->getList());
+?>
 
     <div class="d-flex flex-wrap justify-content-evenly w-75 m-auto mt-3">
         <?php if ($result->num_rows > 0) : ?>

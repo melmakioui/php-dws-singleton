@@ -5,7 +5,7 @@ class RegisterProduct {
     private $validation;
     private $conn;
     private const INSERT = "INSERT INTO tshirts (name,description,price) VALUES (:name,:description,:price)";
-    private const SELECT = "SELECT * FROM :tshirts";
+    private const SELECT = "SELECT * FROM tshirts";
 
     public function __construct()
     {
@@ -19,16 +19,14 @@ class RegisterProduct {
 
         $parsedInputs = $this->validateInputs($inputs);
 
-        $name = $parsedInputs["name"];
-        $description = $parsedInputs["description"];
-        $price = $parsedInputs["price"];
+        $values = array(
+            ":name"=>$parsedInputs["name"],
+            ":description"=>$parsedInputs["description"],
+            ":price"=>$parsedInputs["price"]
+        );
 
         $statement = $this->conn->prepare(self::INSERT);
-        $statement->bindParam('name',$name);
-        $statement->bindParam('description',$description);
-        $statement->bindParam('price',$price);
-
-        $result = $statement->execute();
+        $result = $statement->execute($values);
 
         if(!$result) header("Location: ./views/form-alta-producte.php?dberr");
         else header("Location: index.php"); 
@@ -37,14 +35,15 @@ class RegisterProduct {
 
     public function getList(){
 
-        $tshirts = "tshirts";
-
         $statement = $this->conn->prepare(self::SELECT);
-        $statement->bindParam('tshirts',$tshirts);
         $result = $statement->execute();
+        $data = [];
 
-        if($result)
-            $_POST['tshirt-list'] = $result;
+        if($result) 
+           while($row = $statement->fetch(PDO::FETCH_ASSOC))
+                array_push($data,$row);
+           
+        return $data;
     }
     
     private function validateInputs($inputs){
@@ -61,8 +60,4 @@ class RegisterProduct {
 
 
 }
-
-
-$reg = new RegisterProduct();
-
-$reg->insertProduct(array("name"=>"test","description"=>"abcdefg","price"=>"13.42"));
+?>
