@@ -7,6 +7,12 @@
   <form class="w-25 m-auto d-flex flex-column justify-content-center align-items-center" action="/index.php" method="POST" enctype="multipart/form-data">
 
     <h3>AFEGIR PRODUCTE</h3>
+    
+    <? if (isset($_GET['inerr'])) : ?>
+      <div class="alert alert-danger w-100 text-center mt-5" role="alert">
+        Per favor emplena totes les entrades.
+      </div>
+    <? endif ?>
 
     <div class="form-group mb-3 w-100">
       <label for="producte">Nom del producte</label>
@@ -29,6 +35,8 @@
     </div>
 
     <button type="submit" class="btn btn-dark w-25 ">PUJA</button>
+
+
   </form>
 </body>
 

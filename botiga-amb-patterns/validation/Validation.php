@@ -42,7 +42,7 @@ class Validation
        return $inputs;     
     }
 
-    public function isNumber($num){
+    public function isNumber($num) :bool{
         return is_numeric($num);
     }
     
