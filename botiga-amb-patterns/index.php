@@ -2,8 +2,8 @@
 require_once './validation/RegisterProduct.php'; 
 
 
-if(!isValidInput() || !isUploadedFile())
-    header("Location: /views/FormRegisterProduct.php?inerr=true");
+if(!isset($_POST) || !isset($_FILES))
+    header("Location: /views/List.php");
 else {
     $register = new RegisterProduct();
 
@@ -19,20 +19,5 @@ else {
     header("Location: /views/List.php");   
 }           
   
-
-function isValidInput(){
-    foreach($_POST as $data)
-        if(!isset($data) || empty($data))
-            return false;
-    return true;
-}
-
-function isUploadedFile(){
-    $fileDirectory = $_FILES['file']['tmp_name'];
-    $fileName = $_FILES['file']['name'];
-    
-    return file_exists($fileDirectory) ||
-           is_uploaded_file($fileName);
-}
 
 
