@@ -2,9 +2,9 @@
 require_once './validation/RegisterProduct.php'; 
 
 
-if(!isset($_POST) || !isset($_FILES))
+if(!isValidInput() || !isUploadedFile()){
     header("Location: /views/List.php");
-else {
+}else {
     $register = new RegisterProduct();
 
     $name = $_POST['name'];
@@ -21,3 +21,19 @@ else {
   
 
 
+function isValidInput(){
+    foreach($_POST as $data)
+        if(!isset($data) || empty($data))
+            return false;
+    return true;
+}
+
+function isUploadedFile(){
+    if(!isset($_FILES) || empty($_FILES))
+        return false;
+    $fileDirectory = $_FILES['file']['tmp_name'];
+    $fileName = $_FILES['file']['name'];
+
+    return file_exists($fileDirectory) ||
+           is_uploaded_file($fileName);
+}
