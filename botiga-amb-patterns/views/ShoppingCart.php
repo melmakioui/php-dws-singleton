@@ -39,15 +39,5 @@ $carreto = array(
 <button class="btn btn-dark mt-5">COMPRA</button>
 
 </div>
-
-
-
-<!-- //Permitir ver el contenido del directorio imagenes1 (Index Of)
-//Imagenes 2 no tiene que mostrar las imagenes (Al hacer el index no tiene que mostrar las imagness)
-//Alias que muestre lo que tiene mods-enabled
-//Cuando entremos en una pagina redireccione a otra
-//Habilitar modulo server-info -->
-
-
 </body>
 </html>

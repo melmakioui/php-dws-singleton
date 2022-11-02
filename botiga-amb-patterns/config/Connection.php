@@ -11,6 +11,7 @@ class Connection {
     private function __construct()
     {
         require_once 'config.php';
+        $db = DbParameters::getParameters();
         $this->host = $db["host"];
         $this->username = $db["user"];
         $this->password = $db["password"];
